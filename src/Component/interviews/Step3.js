@@ -10,41 +10,38 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 // import Step1AddField from "./Step1AddField";
 
-const Step3 = () => {
+const Step3 = ({handleDataChange}) => {
   // const [questionInput, setquestionInput] = useState("");
   // question:''
-  const [nameInput, setnameInput] = useState("");
+  // const [nameInput, setnameInput] = useState("");
   const [name, setname] = useState({
-    firstname : '',
-    lastname : '',
+    firstName : '',
+    lastName : '',
     email : ''
   });
   const [participanteList,setparticipanteList] = useState([])
   const itemEvent = (e) => {
     setname({...name,[e.target.name]:e.target.value});
   };
-
- 
   const addListname = () => {
     // const newList= questionInput.concat({question});
     // setquestionInput(newList);
     setparticipanteList([...participanteList,name]);
-    toast.success("add successfully!");
+    handleDataChange('panel',[...participanteList,name])
     // setquestionInput("");
+    console.log("name",name);
   };
-  console.log(participanteList);
+  // console.log(participanteList);
 
-  console.log(name);
+  
   const deletename = (id) => {
     console.log("deleted");
-    toast.success("delete successfully!");
     setparticipanteList((oldname) => {
       return oldname.filter((arrEle, index) => {
         return index !== id;
       });
     });
   };
-  
   return (
             <>
               <div className="step1">
@@ -55,8 +52,7 @@ const Step3 = () => {
                         marginLeft: "30px",
                         color: "rgb(25,25,65)",
                         size:"20px"
-                        
-                      }}
+                    }}
                     />Panel Participant</h2>
                     <br/>
                   <div className="inputfield">
@@ -65,20 +61,19 @@ const Step3 = () => {
                         marginBottom: "-10px",
                         marginLeft: "30px",
                         color: "rgb(25,25,65)",
-
                       }}
                     />
                     <Input
                       as={TextField}
-                      name="firstname"
-                      id="firstname"
+                      name="firstName"
+                      id="firstName"
                       style={{ width: "160px" }}
                       // onInput={inputChangeFunction}
                       onChange={itemEvent}
                       //  value={FirstInputValue}
                       id="standard-basic"
                       placeholder="First Name"
-                      value={nameInput.firstname}
+                      value={name.firstName}
                     />
                     <PersonIcon
                       style={{
@@ -89,13 +84,12 @@ const Step3 = () => {
                     />
                     <Input
                       as={TextField}
-                      name="lastname"
-                      id="lastname"
+                      name="lastName"
+                      id="lastName"
                       style={{ width: "160px" }}
                       // onInput={inputChangeFunction}
-                      value={nameInput.lastname}
+                      value={name.lastName}
                       onChange={itemEvent}
-
                       id="standard-basic"
                       placeholder="Last Name"
                     />
@@ -113,7 +107,7 @@ const Step3 = () => {
                       style={{ width: "160px" }}
                       id="standard-basic"
                       placeholder="Email-Id"
-                      // onChange={itemEvent}
+                      onChange={itemEvent}
 
                     />
                     
@@ -132,10 +126,8 @@ const Step3 = () => {
                       >
                         ADD
                       </Button><br/><br/>
-                     
                     </div>
                     <div>
-                    
                     </div>
                   </div>
                 </form>
@@ -143,7 +135,7 @@ const Step3 = () => {
                 {participanteList.map((item, id) => (
             <Grid container spacing={3} key={id}>
               <Grid item xs={6}>
-                <p>{`${item.firstname} ${item.lastname}`}</p>
+                <p>{`${item.firstName} ${item.lastName}`}</p>
                 {/* <p>{item.lastname}</p> */}
               </Grid>
               <Grid item xs={2}>
@@ -151,6 +143,7 @@ const Step3 = () => {
                 <div className="Add_closeicon">
               <CloseIcon style={{ color: "black" }}  onClick={() => {
                       deletename(id);
+                      toast.success("delete successfully!");
                     }} />
             </div>
                 </h3>
@@ -158,9 +151,8 @@ const Step3 = () => {
               </Grid>
               ))}
           </div>
-         
-          <ToastContainer />
-              </div>
+        </div>
+              <ToastContainer />
             </>
     );
 };

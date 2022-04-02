@@ -8,54 +8,48 @@ import "./interviews.css";
 import FormControl from "@material-ui/core/FormControl";
 import NativeSelect from "@material-ui/core/NativeSelect";
 import CloseIcon from "@material-ui/icons/Close";
+import Chip from "@material-ui/core/Chip"
 
 import api from "../helper/api";
-const Step2 = (
-user) => {
-  
-  // }
-  const [isDisabled, setIsDisabled] = useState(true);
+const Step2 = ({setTestQuestion,handleDataChange}) => {
   const [departmentList, setdepartmentList] = useState([]);
   const [jobList, setjobList] = useState([]);
   const [managerList,setmanagerList] = useState([]);
-  // const [questions, setquestions] = useState([]);
+  const [questions, setquestions] = useState([]);
+  const [disabled,setDisable] = useState(false)
   let curruntUser= JSON.parse(localStorage.getItem("user"))
-  
+  const [managerValues,setManagerValues] = useState('')
   const [manager,setManager] = useState({
-    firstname: curruntUser.admin.firstname,
-    lastname : curruntUser.admin.lastname,
+    first_name: curruntUser.admin.firstname,
+    last_name : curruntUser.admin.lastname,
     email : curruntUser.admin.email,
-    // firstname : '',
-    // lastname : '',
-    // email : '',
     department : '',
-    jobtitle : ''
+    jobTitle : ''
   })
-  // const [admin,setAdmin] = useState([curruntUser])
   const [managernameList,setManagernameList] = useState([])
-  
+  // console.log(manager);
   const getname = () => {
-     console.log(managerList);
-     
-    managerList.push({email:curruntUser.admin.email,firstname:curruntUser.admin.firstname,lastname:curruntUser.admin.lastname})
-    console.log(curruntUser.admin.email);
-    console.log(curruntUser.admin.firstname);
-    console.log(curruntUser.admin.lastname);
-    managerList.find((item,admin) => {
+    //  console.log(managerList);
+    managerList.push({
+        email:curruntUser.admin.email,
+        first_name:curruntUser.admin.firstname,
+        last_name:curruntUser.admin.lastname
+      })
+    managerList.find((item) => {
       if (item.email === manager.email) {
-        console.log(item.firstname)
-        console.log(item.lastname)
-        console.log(item.email)
+        // console.log(curruntUser.admin.firstname);
+        // console.log(item.firstname)
+        // console.log(item.lastname)
+        // console.log(item.email)
         setManager((olditem) => {
           return {
             ...olditem,
-           firstname: item.firstname,
-            lastname: item.lastname,
+           first_name: item.firstname,
+            last_name: item.lastname
           }
         })
       }
     })
-    
   }
   const SelectDepartment = () => {
     let items = [];
@@ -67,38 +61,50 @@ user) => {
   const SelectJob = () => {
     let jobs = [];
     jobList.map((items, index) => {
-      console.log(jobList)
+      // console.log(jobList)
       jobs.push(<option value={items.title}>{items.title}</option>);
     });
     return jobs;
   };
-  const addListname = (e) => {
+  
+  const addListname = (response) => {
     setManagernameList([...managernameList,manager])
-    setIsDisabled(!isDisabled)
+    // setTestQuestion(addquestions())
+    addquestions();
+    handleDataChange("managers",[manager])
+    // let que = []
+    // que()
+    // setTestQuestion("what is react ?")
+    setDisable(true)
   }
+  // console.log(manager);
+  // const que  = () => {
+  //  let quet = []
+  //  quet.push("what is react ?")
+  // }
+  // console.log(quet);
   const inputchange = (e) => {
     setManager({...manager,[e.target.name]:e.target.value});
     };
-  
+
   const getmanager = async () => {  
     let response = await api.get("/get-manager");
-    console.log(response.data.data);
+    // console.log(response.data.data);
     if (response.data.data) {
       setmanagerList(response.data.data);
     }
   };
   const getdepartment = async () => {
     let response = await api.get("/get-department");
-    console.log(response.data.result);
+    // console.log(response.data.result);
     if (response.data.result) {
       setdepartmentList(response.data.result);
     }
   };
   
   const getjob = async () => {
-    // console.log(jobValues);
     let response = await api.get("/get-job-detail");
-    console.log(response.data.result);
+    // console.log(response.data.result);
     if (response.data.result) {
       setjobList(response.data.result);
     }
@@ -113,34 +119,70 @@ user) => {
     // deletedepartment()
   }, [manager.email]);
   const getemails = () => {
-    let useremail=user.email;
     // let curruntUser= JSON.parse(localStorage.getItem("user"))
     const email = curruntUser.admin.email;
-    console.log(curruntUser.admin.email);
+    // console.log(curruntUser.admin.email);
     // console.log(user.admin.firstname);
     // }
     let items = [];
-    items.push(
-      <option value={useremail}>{useremail} {email}</option>
-      // <option value={adminemail}>{adminemail}</option>
-
-      // <option value={adminemail}>{adminemail}</option>
-      // saveData()
-
+    items.push (
+      <option value={email}>{email} </option>
     );
     managerList.map((item) => {
       if(item.registration_status==="REGISTERED" && item.isDeleted===false)
      { items.push(
         <option value={item.email}>{item.email}</option>
-      );}
+      )}
 
     })
 
     return items;
 
   }
+  const addquestions = () => {
+    // getdepartment();
+    let que=[]
+    departmentList.map((item) => {
+      if(item.name === manager.department) {
+         que.push(...item.questions)
+        //  setTestQuestion(que)
+        // console.log(item.questions);
+      }
+    })
+    jobList.map((item) => {
+      if(item.title === manager.jobTitle) {
+         que.push(...item.questions)
+        //  setTestQuestion([que])
+        // console.log(item.questions);
+      }
+    })
+    managerList.map((item) => {
+      if(item.email === manager.email) {
+        que.push(...item.firstname)
+      }
+    })
+    const addquestion = async (question) => {
+      const payload = {
+        // ...managerValues,
+        question: { questions },
+      };
+  
+      let response = api.post(
+        `manager/save-question/${managerValues.manager_token}`,
+        payload
+      );
+      // console.log(response.data.data);
+      que.push(response.data.question)
+      //  if (response.data.manager_token) {
+      //  setquestions(response.data.data);
+      console.log(response.data.question);
+    };
+    console.log(que);
+    console.log("manager",manager);
+     setTestQuestion(que)
+  }
     const deletename = (id) => {
-      console.log("deleted");
+      // console.log("deleted");
       setManagernameList((oldname) => {
         return oldname.filter((arrEle, index) => {
           return index !== id;
@@ -172,12 +214,11 @@ user) => {
                 variant="filled"
                 id="outlined-basic"
                 placeholder="FirstName"
-                name="firstname"
-                value={manager.firstname}
-                disabled={isDisabled}
-                // disabled={true}
+                name="first_name"
+                value={manager.first_name}
                 // const firstname={curruntUser.admin.firstname}
                 // value={admin()}
+                disabled={true}
                 onChange={inputchange}/>
                 {/* {admin()} */}
             </Grid>
@@ -187,12 +228,14 @@ user) => {
                 variant="filled"
                 id="outlined-basic"
                 placeholder="LastName"
-                name="lastname"
-                value={manager.lastname}
-                disabled={isDisabled}
-                // disabled={true}
+                name="last_name"
+                value={manager.last_name}
                 onChange={inputchange}
-         />
+                disabled={true}
+                
+                
+
+              />
             </Grid>
             <Grid item xs={4} sm={4} xl={4} md={4} className="d-flex">
               <FormControl style={{ width: "200px", marginTop: "5px" }}>
@@ -204,8 +247,6 @@ user) => {
                   // value={departmentValues.name || ''}
                   // onChange= {handleSelectChange}
                   value={manager.email}
-                  disabled={isDisabled}
-                  
                 // onChange={handleInput}
                 onChange={inputchange}
                   id="email">
@@ -225,13 +266,12 @@ user) => {
             <NativeSelect
                           as={NativeSelect}
                           style={{ marginLeft: "10px", width: "200px" }}
-                          name="name"
+                          name="department"
                           // value={departmentList}
                           // value={departmentValues.name || ''}
                           // onChange= {handleSelectChange}
                 onChange={inputchange}
-                disabled={isDisabled}
-                
+                          
                           id="department"
                         >
                           <option>--Select Department--</option>
@@ -244,14 +284,13 @@ user) => {
             <NativeSelect
                           as={NativeSelect}
                           style={{ marginLeft: "10px", width: "200px" }}
-                          name="name"
+                          name="jobTitle"
                           // value={departmentList}
                           // value={departmentValues.name || ''}
                           // onChange= {handleSelectChange}
-                onChange={inputchange}
-                disabled={isDisabled}
-                
-                          id="department"
+                          onChange={inputchange}
+                          
+                          id="title"
                         >
                           <option>--Select Job-Title--</option>
                           {SelectJob()}
@@ -265,8 +304,7 @@ user) => {
             variant="contained"
             color="primary"
             onClick={addListname}
-            // disabled={isDisabled}
-            
+
             // onClick={addquestions}
           >
             ADD
@@ -278,7 +316,9 @@ user) => {
             {managernameList.map((item, id) => (
             <Grid container spacing={3} key={id}>
               <Grid item xs={6}>
-                <p>{`${item.firstname} ${item.lastname}`}</p>
+                <p>
+                  {`${item.first_name} ${item.last_name}`}
+                  </p>
                  {/* <p>{item.lastname}</p>  */}
               </Grid>
               
