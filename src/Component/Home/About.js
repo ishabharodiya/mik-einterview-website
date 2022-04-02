@@ -20,7 +20,7 @@ function About() {
             <img className="about-img1" src={home5} alt="MyPic" />
           </div>
           <h3 className="about-title">HOW WE</h3>
-          <h3 className="about-title">CAN HELP YOU</h3>
+          <h3 className="about-title">CAN HELP YOU?</h3>
           <br></br>
           <h1> And Why We Care</h1>
           <br></br>
