@@ -1,0 +1,36 @@
+.home-company {
+  left: 0;
+  bottom: 0;
+  animation: thiran 3s;
+  height: 280px;
+  /* text-align: center; */
+  display: flex;
+  background-color: rgb(137, 137, 216);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  color: white;
+  margin-bottom: 20px;
+  width: 100%;
+}
+.home-col-8 {
+  width: 100%;
+  float: left;
+}
+.home-company-title {
+  color: white;
+  font-size: 55px;
+  margin-left: 200px;
+  margin-top: 30px;
+}
+.home-company-photo {
+  height: 280px;
+  width: 380px;
+  margin-left: 50px;
+  /* align:center;    */
+}
+.company-text {
+  font-size: 20px;
+  margin-left: 180px;
+  margin-top: 5px;
+  line-height: 30px;
+}

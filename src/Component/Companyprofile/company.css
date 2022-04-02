@@ -1,0 +1,273 @@
+.page {
+  margin: 20px auto;
+  margin-bottom: 50px;
+  justify-content: center;
+  padding: 15px 5px 10px 15px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0, 1);
+  background-color: whitesmoke;
+  box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  width: 21.25%;
+  border-radius: 12px;
+  box-shadow: 0px 13px 10px -7px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+.page:hover {
+  box-shadow: 50px 50px 20px -8px rgba(226, 216, 216, 0.1);
+  transform: scale(1.05, 1.05);
+}
+.header {
+  height: 90px;
+  overflow: hidden;
+  /* background-color:#0b96d6; */
+  font-family: "Dancing Script", cursive;
+  padding: 20px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+/* .logo{
+        background-image: url("onlinelogomaker-030421-1411-2933.png");
+      } */
+.CompanyProfileForm_formheader {
+  height: 70px;
+  width: 1130px;
+  margin-top: -14px;
+  overflow: hidden;
+  background-color: rgb(25, 25, 65);
+  font-family: "Dancing Script", cursive;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-bottom: 7px solid black;
+  margin-left: -9px;
+}
+.header3 {
+  height: 11px;
+  width: auto;
+  margin: -13px;
+  overflow: hidden;
+  background-color: black;
+  font-family: "Dancing Script", cursive;
+  justify-content: center;
+  align-items: center;
+}
+/* .menu{
+      line-height: 30px;
+      background-color: black;
+      align-items: center;
+      justify-content: center;
+      margin-left: 50px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size:x-large;
+     } */
+.CompanyProfileForm_company-info-title {
+  font-size: 30px;
+  font-family: "DIN";
+  color: white;
+  line-height: 60px;
+}
+.CompanyProfileForm_card0 {
+  margin: 20px auto;
+  margin-bottom: 100px;
+  margin-top: 80px;
+  padding: 15px 5px 10px 15px;
+  float: center;
+  width: 1130px;
+  /* width:auto; */
+  /* height: 1050px; */
+  padding: 15px 8px;
+  background: rgb(180, 180, 243);
+  position: relative;
+  height: auto;
+  border-radius: 1px;
+  box-shadow: 0px 13px 10px -7px darkgray;
+}
+/* department,manager,job box */
+.Department_card1,
+.Manager_card1,
+.JobTitle_card1 {
+  padding: 30px 40px 0;
+  background: rgb(249, 255, 255);
+  border-radius: 15px;
+  padding: 20px 50px;
+  height: auto;
+  margin-top: 20px;
+  box-shadow: -2px 13px 10px -15px rgb(224, 7, 7);
+}
+.questions_card1 {
+  padding: 30px 40px 0;
+  background: white;
+  border-radius: 15px;
+  padding: 20px 50px;
+  height: auto;
+  margin-top: 20px;
+  box-shadow: -2px 13px 10px -15px rgb(12, 12, 12);
+}
+/* all table head row css */
+.company-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+.company-th {
+  text-align: left;
+  padding: 8px;
+  background-color: rgb(25, 25, 65);
+  color: white;
+}
+.company-td {
+  text-align: left;
+  padding: 8px;
+}
+.company-tr:nth-child(even) {
+  background-color: rgb(217, 232, 236);
+}
+/* ======================= */
+.AddDepartment_closeicon {
+  float: right;
+  margin-top: -23px;
+  margin-left: 10px;
+}
+
+/* .AddDepartment_closeicon2 {
+  float: right;
+  margin-top: -5px;
+  margin-right: 10px;
+} */
+
+.AddJob_closeicon {
+  float: right;
+  margin-top: -23px;
+  margin-right: 10px;
+}
+.AddManager_closeicon {
+  float: right;
+  margin-top: -23px;
+  margin-right: 10px;
+}
+.managerFields {
+  width: 250px;
+  margin-top: 5px;
+}
+/* //about page */
+.Department_title-font,
+.JobTitle_title-font,
+.Manager_title-font {
+  font-size: 16pt;
+  line-height: 14pt;
+  font-family: "DIN";
+  margin-bottom: 20px;
+}
+.Department_row,
+.Manager_row,
+.JobTitle_row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+.Department_col-12 {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 100%;
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+.cbox {
+  font-size: 12pt;
+  font-family: "DIN";
+  text-transform: uppercase;
+}
+.AddDepartment_primaryHeader,
+.AddManager_primaryHeader,
+.AddJob_primaryHeader {
+  background: rgb(25, 25, 65);
+  color: #fff;
+  font-size: 15pt;
+  line-height: 24pt;
+  text-transform: uppercase;
+  text-align: center;
+  height: 50px;
+  padding: 5px;
+  border-bottom: 5px solid #080005;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+.dialog_input {
+  width: 350px;
+  margin-top: 10px;
+}
+.JobTitle__dialog_input {
+  width: 350px;
+  margin-top: 10px;
+}
+.DialogBox {
+  position: absolute;
+  top: -10px;
+}
+#dialog-cancel-btn {
+  float: right;
+  margin-left: 10px;
+  margin-top: 80px;
+}
+#dialog-save-btn {
+  float: right;
+  padding: 5px;
+  margin-top: 80px;
+}
+#error-dialog {
+  border-top: 10px solid rgb(25, 25, 65);
+}
+#standard-basic-input {
+  width: "250px";
+  margin-top: 5px;
+}
+/* 
+  company-footer */
+.company-footer {
+  height: 80px;
+  text-align: center;
+  background-color: rgb(25, 25, 65);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  color: black;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  border-top: 7px solid black;
+}
+.company-footer-logo {
+  height: 50px;
+  width: 120px;
+}
+#delete_question {
+  color: black;
+}
+/* #delete_question:hover {
+  background-color: white; */
+/* } */
+#edit_btn {
+  background-color: rgb(25, 25, 65);
+  color: white;
+  width: 40px;
+  height: 35px;
+  border-radius: 6px;
+  border-color: rgb(25, 25, 65);
+}
+#delete_btn {
+  background-color: #f8384b;
+  color: white;
+  width: 40px;
+  height: 35px;
+  border-radius: 6px;
+  border-color: #dc3545;
+  margin-left: 100 px;
+}
+#Action_css {
+  justify-content: right;
+  text-align: right;
+}

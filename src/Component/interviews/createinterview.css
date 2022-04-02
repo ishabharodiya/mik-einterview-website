@@ -1,0 +1,63 @@
+.mdiv{
+    width: 80%;
+    height: 100vh;
+    background-color:white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.cdiv{
+    width: 80%;
+    height:200vh;
+    margin-top: 130px;
+    margin-left: 210px;
+    background-color: white;
+    box-shadow: 5px 5px 25px -5px  rgb(0,0,0,0.5);
+    border-radius: 15px;
+    align-items: center;
+    justify-content: center;
+
+}
+.header{
+    background-color: rgb(25,25,65);
+    color: white;
+}
+.h1{
+    justify-content: left;
+    
+}
+.c1{
+    width: 100%;
+    height: 20vh;
+    background-color: white;
+    box-shadow: 5px 5px 25px -5px  rgb(0,0,0,0.5);
+    border-radius: 15px;
+    align-items: center; 
+}
+.c2{
+    width: 100%;
+    height: 25vh;
+    background-color: white;
+    box-shadow: 5px 5px 25px -5px  rgb(0,0,0,0.5);
+    border-radius: 15px;
+    align-items: center;  
+}
+.Add{
+    margin-left:20px;
+    width:30px;
+    /* background-color:blue; */
+}
+.input1{
+    text-align: left;
+    align-items: left;
+    height: 40px;
+    top: 15px;
+    border: none;
+    background: transparent;
+    font-size: 20px;
+    font-weight: 30;
+    width: 60%;
+    border-bottom: 2px solid rgb(25, 25, 65);
+}
